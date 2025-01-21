@@ -2,22 +2,22 @@
 <html lang="ru">
 <head>
     <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();
-    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
- 
-    ym(98959916, "init", {
-         clickmap:true,
-         trackLinks:true,
-         accurateTrackBounce:true,
-         webvisor:true
-    });
- </script>
- <noscript><div><img src="https://mc.yandex.ru/watch/98959916" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
- <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+     
+        ym(98959916, "init", {
+             clickmap:true,
+             trackLinks:true,
+             accurateTrackBounce:true,
+             webvisor:true
+        });
+     </script>
+     <noscript><div><img src="https://mc.yandex.ru/watch/98959916" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+     <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amanda Search Engine</title>
@@ -32,14 +32,19 @@
             text-align: center;
             justify-content: center;
             align-items: center;
-            align-content: center;
-            top: 50%
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: background-image 1s ease-in-out;
         }
 
         .imgl {
             display: block;
-            margin: 50px auto 0;
-            max-width: 200px; /* Установим максимальную ширину картинки для обычных экранов */
+            margin: 0 auto 20px;
+            max-width: 200px;
             height: auto;
         }
 
@@ -47,35 +52,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
         }
 
         #search-input {
-            width: 500px;
-            height: 30px;
-            border: 1px darkorange solid;
+            width: 400px;
+            height: 40px;
+            border: 1px solid darkorange;
             text-align: center;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding: 0 10px;
             outline: none;
-            border-radius: 6px;
+            border-radius: 20px 0 0 20px;
+            font-size: 16px;
         }
 
         #search-input:focus {
             border-color: #FFB841;
-            outline: none;
         }
 
         #search-button {
-            height: 34px;
-            border: 1px darkorange solid;
+            height: 40px;
+            width: 50px;
+            border: 1px solid darkorange;
             cursor: pointer;
             background-color: white;
-            padding: 0 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
+            border-radius: 0 20px 20px 0;
         }
 
         #search-button i {
@@ -87,50 +90,39 @@
             background-color: orange;
         }
 
-        @media screen and (max-width: 667px) {
-            #search-input {
-                width: 350px;
-            }
-
-            /* Адаптивный размер для картинки на мобильных устройствах */
-            .imgl {
-                max-width: 150px; /* Размер картинки для маленьких экранов */
-            }
+        .link-container {
+            margin-top: 30px;
         }
 
         .link-container a {
             margin: 0 10px;
             text-decoration: none;
             color: darkblue;
+            font-size: 14px;
         }
 
         .link-container a:hover {
             text-decoration: underline;
         }
 
-        .link-container {
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 30px;
-            display: flex;
-        }
-
-        .install-button {
+        footer {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: darkorange;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none; /* Initially hidden */
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
         }
 
-        .install-button:hover {
-            background-color: orange;
+        @media screen and (max-width: 667px) {
+            #search-input {
+                width: 300px;
+            }
+        }
+              #message {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -138,9 +130,9 @@
 
     <img class="imgl" src="amanda.png">
 
-    <div id="input" style="align-items: center; justify-content: center; text-align: center;">
+    <div id="input">
         <form id="search-container" onsubmit="search(event)">
-            <input id="search-input" type="text" placeholder="Search Google...">
+            <input id="search-input" type="text" placeholder="Search Google..." oninput="updateBackground()">
             <button id="search-button" type="submit">
                 <i class="fas fa-search"></i>
             </button>
@@ -153,15 +145,37 @@
         <a href="https://www.tiktok.com" target="_blank">TikTok</a>
         <a href="https://maxkranz.github.io/amandaya" target="_self">Yandex</a>
     </div>
+   <div id="message"></div>
+
+    <footer>
+        &copy; 2025 Amanda Search. All rights reserved.
+    </footer>
 
     <script>
-        function search(event) {
-            event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+    function search(event) {
+            event.preventDefault();
             const query = document.getElementById('search-input').value;
             if (query) {
                 const searchURL = 'https://www.google.com/search?q=' + encodeURIComponent(query);
                 window.location.href = searchURL;
             }
+        }
+
+        function showMessage() {
+            const messages = [
+                "Ты точно что-то ищешь?",
+                "Ищешь что-то особенное?",
+                "Скорее вводи запрос!",
+                "Amanda поможет найти все!",
+                "Что бы это могло быть?",
+                "Найди, пока не нашел кто-то другой!"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = randomMessage;
+            setTimeout(() => {
+                messageElement.textContent = '';
+            }, 3000);
         }
     </script>
 </body>
