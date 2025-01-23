@@ -119,16 +119,35 @@
                 width: 300px;
             }
         }
-              #message {
+
+        #message {
             margin-top: 20px;
             font-size: 14px;
             color: #555;
+        }
+
+        #results {
+            margin-top: 20px;
+            text-align: left;
+            width: 80%;
+            max-width: 800px;
+            overflow-y: auto;
+        }
+
+        #results h3 {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        #results p {
+            font-size: 14px;
+            color: #444;
         }
     </style>
 </head>
 <body>
 
-    <img class="imgl" src="amanda.png">
+  <a href="https://amanda.maxkranz.me"> <img class="imgl" src="amanda.png"></a>
 
     <div id="input">
         <form id="search-container" onsubmit="search(event)">
@@ -145,37 +164,54 @@
         <a href="https://www.tiktok.com" target="_blank">TikTok</a>
         <a href="https://maxkranz.github.io/amandaya" target="_self">Yandex</a>
     </div>
-   <div id="message"></div>
+
+    <div id="results"></div>
 
     <footer>
         &copy; 2025 Amanda Search. All rights reserved.
     </footer>
 
     <script>
-    function search(event) {
+        async function search(event) {
             event.preventDefault();
             const query = document.getElementById('search-input').value;
-            if (query) {
-                const searchURL = 'https://www.google.com/search?q=' + encodeURIComponent(query);
-                window.location.href = searchURL;
+            if (!query) return;
+
+            const apiKey = 'AIzaSyD_SjbT-2lTISCvYM7lY510RviDcUi8OdI';
+            const cx = '002fc18dec82145db'; // Укажи свой идентификатор поисковой системы (CX).
+            const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&key=${apiKey}&cx=${cx}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Ошибка поиска: ' + response.statusText);
+                }
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                console.error(error);
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = '<p>Произошла ошибка. Попробуйте еще раз.</p>';
             }
         }
 
-        function showMessage() {
-            const messages = [
-                "Ты точно что-то ищешь?",
-                "Ищешь что-то особенное?",
-                "Скорее вводи запрос!",
-                "Amanda поможет найти все!",
-                "Что бы это могло быть?",
-                "Найди, пока не нашел кто-то другой!"
-            ];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            const messageElement = document.getElementById('message');
-            messageElement.textContent = randomMessage;
-            setTimeout(() => {
-                messageElement.textContent = '';
-            }, 3000);
+        function displayResults(data) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Очистить предыдущие результаты.
+
+            if (data.items && data.items.length > 0) {
+                data.items.forEach(item => {
+                    const resultDiv = document.createElement('div');
+                    resultDiv.innerHTML = `
+                        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                        <p>${item.snippet}</p>
+                    `;
+                    resultsContainer.appendChild(resultDiv);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>Ничего не найдено.</p>';
+            }
         }
     </script>
 </body>
