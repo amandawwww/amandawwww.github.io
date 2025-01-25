@@ -23,11 +23,10 @@
         }
         .imgl{
             display: block;
-  margin: 50px auto 0;
-  max-width: 200px;
-  height: auto;}
-
-
+            margin: 50px auto 0;
+            max-width: 200px;
+            height: auto;
+        }
 
         #search-container {
             display: flex;
@@ -35,10 +34,11 @@
             align-items: center;
             margin: 20px 0;
             gap: 10px;
+            width: 90%;
         }
 
         #search-input {
-            width: 400px;
+            flex: 1;
             height: 50px;
             border: none;
             padding: 0 20px;
@@ -79,8 +79,10 @@
 
         .link-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin-top: 20px;
+            justify-content: center;
         }
 
         .link-container a {
@@ -151,13 +153,40 @@
             color: #ffba08;
             text-decoration: none;
             transition: color 0.3s ease;
-          font-weight: bold;
+            font-weight: bold;
         }
 
         footer a:hover {
             color: black;
+        }
 
+        @media screen and (max-width: 768px) {
+            #search-input {
+                font-size: 16px;
+                padding: 0 15px;
+            }
 
+            #search-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .link-container a {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #search-input {
+                font-size: 14px;
+                height: 45px;
+                padding: 0 10px;
+            }
+
+            #search-button {
+                height: 45px;
+                width: 45px;
+            }
         }
     </style>
 </head>
@@ -183,7 +212,7 @@
     <div id="results"></div>
 
     <footer>
-        &copy; By <a href="https://maxkranz.me/">Max Kranz</a> supported by <a href="https://t.me/https://t.me/myafofficial">Myaff</a>
+        &copy; By <a href="https://maxkranz.me/">Max Kranz</a> supported by <a href="https://t.me/myafofficial">Myaff</a>
     </footer>
 
     <script>
