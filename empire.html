@@ -1,50 +1,82 @@
-<html>
-  <head>
-    <title>United Empire of Amanda and Ares</title>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet">
-  </head>
-  <style>
-    body{
-                  font-family: 'Montserrat', sans-serif;
+    <title>Соединенная Империя Аманды и Ареса</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
 
-    }
- 
-    .container{
-      text-align:center;
-      justify-content: center
-    }
-    h1{
-      color: indigo;
- 
-    }
-    a{
-      color:indigo;
-      text-decoration: none;
-    }
-    a:hover{
-      text-decoration:underline;
-    }
-    button{
-      width: 150px;
-      border-radius: 50px;
-      height:50px;
-      background-color:indigo;
-      color: white;
-      border: 1px black solid;
-                  font-family: 'Montserrat', sans-serif;
-
-    }
-    button:hover{
-      background-color:white;
-      color: indigo;
-      border:2px indigo solid;
-    }
-  </style>
-  <body>
-    <div class="container">
-      <h1>Amanda-Ares Empire</h1>
-      <p>Get visa now!</p>
-      <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdq4VP69uQ_0-HmBRFUB4ccl5091xumcGcSf3Tt9ZNSTpW2_w/viewform?usp=dialog')">Try</button>
-      <p style="">Amanda Empire was independent state, but the friend of the Emperor made his own search engine - Ares.<br>So we united, and now we are United Empire of Amanda and Ares!<br><A href="https://furokino.tilda.ws">Ares Search Engine</a>
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+          color:black;
+          background-color:white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: indigo;
+            font-size: 2rem;
+        }
+        p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: indigo;
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: white;
+            color: indigo;
+          border: 1px indigo solid;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .btn {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+      <h1>Соединенная Империя Аманды и Ареса</h1>
+      <p style="text-align:center; font-size: 25px">Получи визу сейчас!</p>
+      <button class="btn"onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdq4VP69uQ_0-HmBRFUB4ccl5091xumcGcSf3Tt9ZNSTpW2_w/viewform?usp=dialog')">Попробовать!</button>
+      <p style="">Амандовская Империя была независимым государством, которое защищает свой поисковик, но друг императора тоже сделал свой поисковик - Арес. И вместо того чтобы противостоять друг другу, они объединились в Аманда-Арес!<br><A href="https://furoniko.tilda.ws" style="color:indigo;text-decoration:none;">Ares Search Engine</a>
     </div>
+    <div style="margin-top:50px;" class="container">
+        <h1>Материалы для сдачи теста на визу</h1>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdq4VP69uQ_0-HmBRFUB4ccl5091xumcGcSf3Tt9ZNSTpW2_w/viewform?usp=dialog" class="btn">Получить визу</a>
+        <a href="https://amanda.maxkranz.me/empire-history" class="btn">История Аманда-Ареса</a>
+        <a href="https://amanda.maxkranz.me/empire-codex" class="btn">Имперский Кодекс</a>
+        <a href="https://amanda.maxkranz.me" class="btn">Интерфейс Аманды</a>
+        <a href="https://furoniko.tilda.ws" class="btn">Интерфейс Ареса</a>
+    </div>
+</body>
+</html>
