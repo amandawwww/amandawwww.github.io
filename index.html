@@ -22,5 +22,38 @@
 </head>
 <body>
     <iframe src="https://startling-custard-e530ac.netlify.app/"></iframe>
+      <script>
+    const input = document.getElementById('search');
+    const iframe = document.getElementById('search-frame');
+
+    // Получаем параметр q из адресной строки
+    function getQueryParam() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('q') || '';
+    }
+
+    // Обновляем iframe
+    function updateIframe(query) {
+      iframe.src = `https://jkdf.netlify.app?q=${encodeURIComponent(query)}`;
+    }
+
+    // При нажатии на кнопку
+    function search() {
+      const query = input.value.trim();
+      const newUrl = `${window.location.pathname}?q=${encodeURIComponent(query)}`;
+      history.pushState(null, '', newUrl); // Меняем URL без перезагрузки
+      updateIframe(query);
+    }
+
+    // При загрузке страницы
+    window.addEventListener('DOMContentLoaded', () => {
+      const initialQuery = getQueryParam();
+      if (initialQuery) {
+        input.value = initialQuery;
+        updateIframe(initialQuery);
+      }
+    });
+  </script>
+
 </body>
 </html>
